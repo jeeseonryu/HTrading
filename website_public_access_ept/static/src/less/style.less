@@ -1,0 +1,125 @@
+.login_page_ugg
+{
+	text-align: center;
+	.mt(10%);
+	
+	.login_area_container
+	{
+		position: relative;
+		width: auto !important;
+		display: inline-block;
+		float: none;
+		text-align: left;
+		box-shadow: none;
+		border:0;
+		
+		.field-login
+		{
+			display: inline-block;
+			width: 45%;
+			.mr(5%);
+		}
+		.field-password
+		{
+			display: inline-block;
+			width: 45%;
+		}
+		.field-db
+		{
+			.mb(32px);
+		}
+	}
+	.login_logo_div
+	{
+		width: 100%;
+		text-align: center;
+		.mb(16px);
+		
+		>a
+		{
+			display:inline-block;
+			
+			img
+			{
+				max-width: 248px;
+			}	
+		}
+		
+	}
+	.login_main_heading
+	{
+		width: auto;
+		height: 134px;
+		margin: 0 auto;
+		background:url(/website_public_access_ept/static/src/img/login-title-bg.png) no-repeat 50%;
+		position: relative;
+		
+		p
+		{
+			.size(32px);
+			.muli-semibold();
+			text-align: center;
+			.pt(25px);
+		}
+	}
+	.c-login-input
+	{
+		border:1px solid #dddee1;
+		border-radius: 4px;
+		
+	}
+	.c-login-input::-moz-placeholder {
+		    color: #bbbec4;
+		    opacity: 1;
+	}
+	.all_login_btns
+	{
+		text-align:center;
+		
+		.login_btn_main,.signup_main
+		{
+			float: none;
+			width: 150px;
+			.muli-semibold();
+			border-radius: 4px;
+		}		
+	}
+}
+
+@media (max-width:1200px)
+{
+	.login_page_ugg .login_main_heading
+	{
+		background: none;
+		height: auto;
+		
+		p
+		{
+			.pb(25px);
+			.size(25px);
+		}
+	}
+}
+@media (max-width:600px)
+{
+	.login_page_ugg .login_area_container .field-password {
+   		 width: 100%;
+	}
+	.login_page_ugg .login_area_container .field-login
+	{
+		width: 100%;
+		margin-right: 0;
+		.mb(32px);
+	}
+	.login_page_ugg .login_area
+	{
+		.mt(0) !important;
+	}
+	.login_page_ugg .login_main_heading p
+	{
+		.size(18px);
+	}
+	.login_page_ugg .login_logo_div > a img {
+    	max-width: 160px;
+	}
+}
