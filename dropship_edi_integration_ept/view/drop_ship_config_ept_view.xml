@@ -1,0 +1,60 @@
+<?xml version="1.0" ?>
+<odoo>
+  <data>
+	<record id="drop_ship_config_ept" model="ir.ui.view">
+	    <field name="name">File Server</field>
+	    <field name="model">drop.ship.server.ept</field>
+		<field name="type">tree</field>
+		<field name="arch" type="xml">
+            <tree string="Ftp Server">
+            	<field name="name"/>
+				<field name="host"/>
+			</tree>
+		</field>
+	</record>
+	
+	<record id="drop_ship_config_ept_from_view" model="ir.ui.view">
+		<field name="name">File Server</field>
+		<field name="model">drop.ship.server.ept</field>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+			<form string="File Server">
+				<sheet>
+					<group string="Server Info">
+						<group>
+							<field name="name" required="1"/>
+							<field name="host" required="1"/>
+							<field name="port" required="1"/>
+						</group>
+						<group>
+							<field name="username" required="1"/>
+							<field name="password" required="1" password="1"/>					
+						</group>
+					</group>
+					<group string="Directory List">
+						<field name="directory_ids" nolabel="1">
+							<tree editable="top">
+								<field name="name" required="1"/>
+								<field name="path" required="1"/>
+							</tree>
+						</field>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="action_drop_ship_server_ept" model="ir.actions.act_window">
+		<field name="name">Server FTP Details</field>
+		<field name="res_model">drop.ship.server.ept</field>
+		<field name="view_type">form</field>
+		<field name="view_mode">tree,form</field>
+		<field name="target">current</field>
+	</record>
+			
+	<menuitem id="main_menu_shipping_operations" name="Drop Shipping Operations" 
+			parent="stock.menu_stock_root" />
+    <menuitem id="menu_server_config" name="Server Details" 
+		parent="dropship_edi_integration_ept.main_menu_shipping_operations" action="action_drop_ship_server_ept" sequence="6"/>
+</data>
+</odoo>	

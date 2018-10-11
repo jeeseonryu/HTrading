@@ -1,0 +1,64 @@
+<?xml version="1.0" ?>
+<odoo>
+  <data>
+	<record id="edi_cron_group_tree_view_ept" model="ir.ui.view">
+	    <field name="name">Import/Export Automation Group</field>
+	    <field name="model">edi.cron.group.ept</field>
+		<field name="type">tree</field>
+		<field name="arch" type="xml">
+            <tree string="Import/Export Automation Group">
+            	<field name="name"/>
+            	<field name="partner_ids"/>
+				<field name="cron_ids"/>
+			</tree>
+		</field>
+	</record>
+	
+	<record id="edi_cron_group_form_view_ept" model="ir.ui.view">
+		<field name="name">Import/Export Automation Group</field>
+		<field name="model">edi.cron.group.ept</field>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+			<form string="Import/Export Automation Group" >
+			<sheet>
+				<div class="oe_button_box" name="button_box">
+             			
+             			<button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                            <field name="active" widget="boolean_button"/>
+                        </button>
+                 </div>
+				<group>
+					<group>
+						<field name="name"/>
+						<field name="operation_type"/>
+		            </group>
+				</group>
+				<group string="Scheduled Actions" colspan="4">
+					<field name="cron_ids" nolabel="1"
+					 context="{'default_state':'code',
+					 'default_name':'EDI Operation - ',
+					 'edi_group':True,
+					 'active_test':False,
+					 }"/>
+				</group>
+				<group string="Partners" colspan="4">
+					<field name="partner_ids" nolabel="1" readonly="1"/>
+				</group>
+				
+			</sheet>
+			</form>
+		</field>    
+	</record> 
+    	
+	<record id="action_edi_cron_group_ept" model="ir.actions.act_window">
+        <field name="name">Import/Export Automation Group</field>
+		<field name="res_model">edi.cron.group.ept</field>
+        <field name="view_type">form</field>
+		<field name="view_id" ref="edi_cron_group_tree_view_ept"/>
+   	</record>
+
+    <menuitem id="menu_edi_cron_group" name="Import/Export Automation Group" 
+		parent="edi_ftp_integration.menu_edi_operation" action="action_edi_cron_group_ept"/>
+   
+	</data>    
+</odoo>	  

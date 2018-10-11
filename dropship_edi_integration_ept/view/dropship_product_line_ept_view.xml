@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="dropship_product_line_tree_view_ept" model="ir.ui.view">
+			<field name="name">dropship.product.line.tree</field>
+			<field name="model">dropship.product.line.ept</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Dropship Product Line">
+					<field name="name" />
+					<field name="price" />
+					<field name="weight" />
+					<field name="category" />
+					<field name="attribute_name" />
+					<field name="attribute_value" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="action_dropship_product_line" model="ir.actions.act_window">
+			<field name="name">Dropship Product Line</field>
+			<field name="res_model">dropship.product.line.ept</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<menuitem id="menu_dropship_product_line" name="Product Line"
+			parent="dropship_edi_integration_ept.menu_dropship_temp_product" sequence="2"
+			action="action_dropship_product_line" />
+	</data>
+</odoo>

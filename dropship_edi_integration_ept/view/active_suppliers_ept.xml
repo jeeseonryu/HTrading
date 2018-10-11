@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+<odoo>
+	<data>
+		<record id="active_suppliers_tree_view_ept" model="ir.ui.view">
+			<field name="name">Active Suppliers</field>
+			<field name="model">res.partner</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Active Suppliers" create='false'>
+					<field name="name"/>
+				</tree>
+			</field>
+		</record>
+		
+		<record id="action_active_suppliers_ept" model="ir.actions.act_window">
+	        <field name="name">Active Suppliers</field>
+			<field name="res_model">res.partner</field>
+	        <field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="domain">[('supplier', '=', True),('is_integrate_edi', '=', True)]</field>
+    	</record>
+    	
+    <menuitem id="menu_active_suppliers" name="Active Suppliers" sequence="1"
+		parent="dropship_edi_integration_ept.main_menu_shipping_operations" action="action_active_suppliers_ept"/>
+	</data>
+</odoo>

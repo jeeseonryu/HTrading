@@ -1,0 +1,152 @@
+<?xml version="1.0" ?>
+<odoo>
+  <data>
+	<record id="edi_file_process_job_tree_view_ept" model="ir.ui.view">
+	    <field name="name">File Process Job</field>
+	    <field name="model">edi.file.process.job</field>
+		<field name="type">tree</field>
+		<field name="arch" type="xml">
+            <tree string="File Process Job" create='false'>
+            	<field name="name"/>
+            	<field name="ftp_partner_id"/>
+				<field name="application"/>
+				<field name="operation_type"/>
+				<field name="filename"/>
+				<field name="message"/>
+				<field name="create_date"/>
+			</tree>
+		</field>
+	</record>
+	
+	<record id="edi_file_process_job_log_form_view_ept" model="ir.ui.view">
+		<field name="name">File Process Job Log</field>
+		<field name="model">edi.transaction.log</field>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+			<form string="File Process Job Log" create='false' >
+			<sheet>
+				<group>
+					<field name="product_id" readonly="1"/>
+					<field name="file_quantity"/>
+					<field name="file_sku"/>
+					<field name="file_order_number"/>
+					<field name="job_id" readonly="1"/>
+					<field name="sale_order" readonly="1"/>
+					<field name="delivery_address_id"/>
+					<field name="picking_id" readonly="1"/>
+					<field name="tracking_no" readonly="1"/>
+					<field name="is_processed" readonly="1"/>
+					<field name="message" readonly="1"/>
+				</group>
+			</sheet>
+			</form>
+		</field>    
+	</record> 
+	
+	
+	<record id="edi_file_process_job_form_view_ept" model="ir.ui.view">
+		<field name="name">File Process Job</field>
+		<field name="model">edi.file.process.job</field>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+			<form string="File Process Job" create='false'>
+			<sheet>
+				<div class="oe_button_box" position="inside" name="button_box">
+					<button name="reprocess_job" type="object" string="Process File"
+						class="oe_stat_button" icon="fa fa-cog" attrs="{'invisible':[('is_processed','=',True)]}"/>
+				</div>
+				<group string="General Info">
+					<group>
+						<field name="name" readonly="1"></field>
+						<field name="ftp_partner_id" readonly="1"/>
+						<field name="application" readonly="1"/>
+						<field name="operation_type" readonly="1"/>
+						<field name="is_processed"/>
+					</group>
+					<group>
+						<field name="create_date" readonly="1"/>
+						<field name="filename" readonly="1"/>
+						<field name="company_id" readonly="1"/>
+					</group>
+				</group>
+				<group string="Note" colspan="4">
+					<field name="message" readonly="1" nolabel="1"/>
+				</group>
+				<group string="Transaction Lines Log" colspan="4">
+					<field name="transaction_log_ids" nolabel="1">
+						<tree create="false" delete="false" >
+							<field name="product_id"/>
+							<field name="file_quantity"/>
+							<field name="file_sku"/>
+							<field name="sale_order"/>
+							<field name="picking_id"/>
+							<field name="message"/>				
+						</tree>
+					</field>
+				</group>
+			</sheet>		
+				<div class="oe_chatter">
+                   <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                   <field name="message_ids" widget="mail_thread"/>
+              	</div>
+			
+			</form>
+		</field>    
+	</record> 
+	
+	<record id="edi_file_process_job_search_view_ept" model="ir.ui.view">
+            <field name="name">view.edi.file.process.log.filter</field>
+            <field name="model">edi.file.process.job</field>
+			<field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="File Process Job">
+					<field name="name"/>
+					<field name="application" />
+					<field name="operation_type"/>
+					<field name="filename"/>		
+					<filter name="filter_app_sales" string="Sales" domain="[('application','=','sales')]"/>
+					<filter name="filter_app_shipment" string="Shipment" domain="[('application','=','shipment')]"/>
+					<filter name="filter_app_inventory" string="Inventory" domain="[('application','=','invenotry')]"/>
+					<filter name="filter_app_product" string="Product" domain="[('application','=','product')]"/>
+					<filter name="filter_app_other" string="Other" domain="[('application','=','other')]"/>
+					<newline/>
+					<filter name="filter_operation_export" string="Export" domain="[('operation_type','=','export')]"/>
+					<filter name="filter_operation_import" string="Import" domain="[('operation_type','=','import')]"/>
+	                <group expand="0" string="Group By...">
+						 <filter string="Create Date" icon="terp-personal"  context="{'group_by':'create_date'}"/>
+						 <filter string="Application" icon="terp-personal" context="{'group_by':'application'}"/>
+						 <filter string="Operation" icon="terp-personal" context="{'group_by':'operation_type'}"/>
+					</group>  
+                </search>
+            </field>
+    	</record>        
+    	
+		<record id="action_edi_file_process_job_ept" model="ir.actions.act_window">
+	        <field name="name">File Process Job Log</field>
+			<field name="res_model">edi.file.process.job</field>
+	        <field name="view_type">form</field>
+			<field name="view_id" ref="edi_file_process_job_tree_view_ept"/>
+	        <field name="search_view_id" ref="edi_file_process_job_search_view_ept"/>
+    	</record>
+
+    <menuitem id="menu_edi_log_book" name="EDI Log Book" 
+		parent="edi_ftp_integration.menu_edi_operation" />
+    
+	<menuitem id="edi_file_process_job_log_ept" name="File Process Job Log"
+      parent="menu_edi_log_book" sequence="4"
+	  action="action_edi_file_process_job_ept"/>	  
+
+	</data>
+	
+    <data noupdate="1">
+        <record id="seq_edi_file_process_job" model="ir.sequence">
+            <field name="name">EDI File Process Job Sequence</field>
+            <field name="code">edi.file.process.job</field>
+            <field name="padding">5</field>
+            <field name="prefix">JOB</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+    
+</odoo>	  
+

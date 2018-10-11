@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="edi_res_partner_extension" model="ir.ui.view">
+			<field name="name">edi.res.partner</field>
+			<field name="model">res.partner</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="base.view_partner_form"></field>
+			<field name="arch" type="xml">
+				<field name="lang" position="after">
+					<field name="integrate_edi"/>
+				</field>
+		 		<xpath expr="//notebook/page[@name='sales_purchases']" position="after">
+					 <page string="FTP Configuration" name='edi_ftp_config' attrs="{'invisible':[('integrate_edi','=',False)]}">
+						<group>
+							<group>
+								<field name="ftp_server_id" attrs="{'required':[('integrate_edi','=',True)]}"></field>
+								<field name="csv_delimiter" attrs="{'required':[('integrate_edi','=',True)]}"></field>
+							</group>
+							<group>
+								<field name="order_number_from" attrs="{'required':[('integrate_edi','=',True)]}"></field>
+								<field name="order_number_prefix" attrs="{'invisible':[('order_number_from','=','file')],'required':[('order_number_from','=','prefix_file')]}"></field>
+								<field name="auto_workflow_id"></field>
+							</group>
+							<group>
+								<field name="allow_shipment_export" string="Export Tracking ?"></field>
+								<field name="allow_stock_export" string="Export Stock ?"></field>
+								<field name="allow_product_export" string="Export Products ?"></field>
+							</group>
+						</group>
+						<notebook>
+							<page string="Sales" name='ftp_sales'>
+								<group>
+									<group>
+										<field name="prefix_sale_import" attrs="{'required':[('integrate_edi','=',True)]}"></field>
+										<field name="sale_import_directory_id" attrs="{'required':[('integrate_edi','=',True)]}"></field>
+										<field name="sale_archive_directory_id" attrs="{'required':[('integrate_edi','=',True)]}"></field>
+										<field name="sale_warehouse_id"></field>
+									</group>
+								</group>
+							</page>
+							<page string="Product" name='ftp_product' attrs="{'invisible':[('allow_product_export','=',False)]}" >
+								<group>
+									<group>
+										<field name="prefix_product_export" attrs="{'required':[('allow_product_export','=',True)]}" ></field>
+										<field name="product_export_directory_id" attrs="{'required':[('allow_product_export','=',True)]}" ></field>
+									</group>
+								</group>
+							</page>
+							<page string="Shipment" name='ftp_shipment' attrs="{'invisible':[('allow_shipment_export','=',False)]}">
+								<group>
+									<group>
+										<field name="prefix_shipment_export" attrs="{'required':[('allow_shipment_export','=',True)]}"></field>
+										<field name="shipment_export_directory_id" attrs="{'required':[('allow_shipment_export','=',True)]}"></field>
+									</group>
+								</group>
+							</page>
+							 <page string="Inventory" name='ftp_inventory' attrs="{'invisible':[('allow_stock_export','=',False)]}">
+								<group>
+									<group>
+										<field name="prefix_stock_export" attrs="{'required':[('allow_stock_export','=',True)]}"></field>
+										<field name="stock_export_directory_id" attrs="{'required':[('allow_stock_export','=',True)]}"></field>
+									</group>
+									
+								</group>
+									
+								<group colspan="4" string="Stock Warehouses">
+										<field name="stock_warehouse_ids" widget="many2many_tags"/>
+								</group>
+							</page>
+							<page string="Logs" name='ftp_logs'>
+								<group colspan="4">
+									<field name="edi_log_ids" nolabel="1"></field>
+								</group>
+							</page>
+						</notebook>
+					</page>
+				</xpath> 
+			</field>
+	</record>
+	
+	<record id="partner_product_res_partner_extension" model="ir.ui.view">
+			<field name="name">res.partner.product</field>
+			<field name="model">res.partner</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="base.view_partner_form"></field>
+			<field name="arch" type="xml">
+				<button name="toggle_active" position="before">
+					<button type="action" name="%(action_map_product_wizard_ept)d" class="oe_stat_button"
+								icon="fa fa-exchange" style="width: 150px !important;"
+								string="Import Products"
+								context="{'default_partner_id': active_id}" attrs="{'invisible':[('customer','=',False)]}"
+								 />
+				</button>
+		 		<xpath expr="//notebook/page[@name='sales_purchases']" position="after">
+		 			<page string="Partner Products" name='partner_product'>
+		 				<group sting="Partner Products" colspan="4">
+		 					<field name="partner_product_ids" nolabel="1">
+		 						<tree  editable="top">
+		 							<field name="product_id"/>
+		 							<field name="sku"/>
+		 						</tree>
+		 					</field>
+		 				</group>
+		 			</page>
+				</xpath> 
+			</field>
+	</record>
+	
+	<record id="edi_cron_group_res_partner_extension" model="ir.ui.view">
+			<field name="name">edi.cron.group.res.partner</field>
+			<field name="model">res.partner</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="edi_ftp_integration.edi_res_partner_extension"></field>
+			<field name="arch" type="xml">
+		 		<field name="allow_product_export" position="after">
+		 			<field name="sale_import_cron_group_id"></field>
+		 			<field name="product_export_cron_group_id"></field>
+		 			<field name="shipment_export_cron_group_id"></field>
+		 			<field name="stock_export_cron_group_id"></field>
+		 		</field>
+			</field>
+	</record>
+	
+</odoo>

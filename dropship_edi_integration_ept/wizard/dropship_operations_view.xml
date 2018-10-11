@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record id="dropship_operation_wizard_view_ept" model="ir.ui.view">
+			<field name="name">Dropship Operation</field>
+			<field name="model">dropship.operations</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Dropship Wizard">
+					<group>
+						<group>
+							<field name="partner_ids" required="1" domain="[('is_integrate_edi','=',True)]" 
+							widget="many2many_tags" />
+						</group>
+					</group>
+					<group>
+						<group name='Export' string="Export Operations">
+							<field name="export_shipment_orders" />
+						</group>
+						<group name='import' string="Import Operations">
+							<field name="import_products" />
+							<field name="create_product_data" />
+							<field name="import_inventory" />
+							<field name="import_shipment_info" />
+						</group>
+					</group>
+					<group colspan="2">
+						<field name="product_ids" nolabel="1"
+							attrs="{'invisible':[('create_product_data','!=',True)]}" domain="[('partner_id','in',partner_ids)]"
+							context="{'tree_view_ref':'dropship_edi_integration_ept.dropship_product_tree_view_ept'}">
+							<tree string="Products">
+								<field name="main_product_id" />
+								<field name="partner_id" />
+								<field name="is_processed" />
+							</tree>
+						</field>
+					</group>
+					<group colspan="2">
+						<field name="picking_ids" nolabel="1"
+							attrs="{'invisible':[('export_shipment_orders','!=',True)]}"
+							domain="[('picking_type_id.is_dropship_process','=',True),('partner_id','in',partner_ids),('state','not in',('cancel','done')),('is_exported','=',False)]"
+							context="{'tree_view_ref':'stock.vpicktree_ept'}">
+							<tree string="Purchase Orders">
+								<field name="state" invisible="1" />
+								<field name="name" />
+								<field name="origin" />
+								<field name="partner_id" />
+							</tree>
+						</field>
+					</group>
+					<footer>
+						<button class="oe_highlight" string="Perform" name="perform_operations"
+							type="object" />
+						<button class="oe_highlight" special="cancel" string="Cancel" />
+					</footer>
+				</form>
+			</field>
+		</record>
+
+		<record id="action_dropship_operations_wizard" model="ir.actions.act_window">
+			<field name="name">Dropship EDI Operations</field>
+			<field name="res_model">dropship.operations</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_id" ref="dropship_operation_wizard_view_ept" />
+			<field name="target">new</field>
+		</record>
+
+		<menuitem action="action_dropship_operations_wizard" id="menu_dropship_operation_wizard"
+			sequence="7" parent="dropship_edi_integration_ept.main_menu_shipping_operations" />
+	</data>
+</odoo>		

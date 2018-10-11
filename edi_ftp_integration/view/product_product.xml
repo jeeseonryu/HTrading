@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="product_product_edi_form_view_ept" model="ir.ui.view">
+			<field name="name">product.product.edi.form.extension</field>
+			<field name="model">product.product</field>
+			<field name="inherit_id" ref="product.product_normal_form_view" />
+			<field name="arch" type="xml">
+				<xpath expr="//notebook" position="inside">
+					<page string="EDI" name="edi">
+						<group name="edi_description">
+							<group colspan="4" string="Description for Website">
+								<field name="description_website" nolabel="1" />
+							</group>
+						</group>
+						<group>
+							<group colspan="4" string="Description for Quotations">
+								<field name="description_quote" nolabel="1" />
+							</group>
+						</group>
+						<group name="categories">
+							<field name="web_categories"></field>
+						</group>
+						<group name="YouTube">
+							<field name="youtube_url"></field>
+						</group>
+					</page>
+				</xpath>
+			</field>
+		</record>
+	</data>
+</odoo>

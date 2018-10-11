@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<odoo>
+<data noupdate="0">
+
+ <record id="edi_default_sale_import_group" model="edi.cron.group.ept">
+        <field name="name">Default Sales Import</field>
+        <field name="operation_type">sale_import</field>
+    </record>
+    <record id="edi_default_sale_export_group" model="edi.cron.group.ept">
+        <field name="name">Default Shipment Export</field>
+        <field name="operation_type">shipment_export</field>
+    </record>
+    <record id="edi_default_product_export_group" model="edi.cron.group.ept">
+        <field name="name">Default Product Export</field>
+        <field name="operation_type">product_export</field>
+    </record>
+    <record id="edi_default_stock_export_group" model="edi.cron.group.ept">
+        <field name="name">Default Stock Export</field>
+        <field name="operation_type">stock_export</field>
+    </record>
+    
+   </data>
+</odoo>

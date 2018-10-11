@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+	
+		<record id="partner_product_ept_tree_view" model="ir.ui.view">
+			<field name="name">partner.product.ept.tree</field>
+			<field name="model">partner.product.ept</field>
+			<field name="arch" type="xml">
+				<tree string="Partner Products">
+					<field name="partner_id"/>
+					<field name="product_id"/>
+					<field name="sku" />
+				</tree>
+			</field>
+		</record>
+		
+		<record id="partner_product_ept_form_view" model="ir.ui.view">
+			<field name="name">partner.product.ept.form</field>
+			<field name="model">partner.product.ept</field>
+			<field name="arch" type="xml">
+				<form string="Partner Products">
+					<sheet>
+						<group>
+							<group>
+								<field name="partner_id" />
+								<field name="product_id" />
+								<field name="sku" />
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		
+		<record id="partner_product_ept_action" model="ir.actions.act_window">
+			<field name="name">Partner Products</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">partner.product.ept</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_type">form</field>
+		</record>
+		
+		<menuitem id="partner_product_inventory_menu" parent="stock.menu_stock_inventory_control"
+				name="Partner Products" sequence="9"  action="partner_product_ept_action"/>
+		<menuitem id="partner_product_sales_menu" parent="sale.product_menu_catalog"
+				name="Partner Products" sequence="9" action="partner_product_ept_action"/>
+	</data>
+</odoo>

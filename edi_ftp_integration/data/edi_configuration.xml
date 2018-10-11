@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<odoo>
+<data noupdate="1">
+
+    <record id="edi_default_configuration" model="edi.configuration.ept">
+        <field name="order_number_from">file</field>
+        <field name="stock_warehouse_ids" eval="[(6,0,[ref('stock.warehouse0')])]"/>
+        <field name="order_warehouse_id" eval="ref('stock.warehouse0')"/>
+        <field name="auto_workflow_id" eval="ref('auto_invoice_workflow_ept.automatic_validation_ept')"/>
+    </record>
+    
+</data>
+</odoo>

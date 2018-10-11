@@ -1,0 +1,17 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ftp_server_read,ftp.server.ept.user,model_ftp_server_ept,sales_team.group_sale_salesman,1,0,0,0
+access_ftp_server_all,ftp.server.ept.manager,model_ftp_server_ept,sales_team.group_sale_manager,1,1,1,1
+access_ftp_server_dirctory_read,ftp.directory.ept.user,model_ftp_directory_ept,sales_team.group_sale_salesman,1,0,0,0
+access_ftp_server_dirctory_all,ftp.directory.ept.manager,model_ftp_directory_ept,sales_team.group_sale_manager,1,1,1,1
+access_edi_configuration_read,edi.configuration.ept.user,model_edi_configuration_ept,sales_team.group_sale_salesman,1,0,0,0
+access_edi_configuration_all,edi.configuration.ept.manager,model_edi_configuration_ept,sales_team.group_sale_manager,1,1,1,0
+access_edi_file_process_job_read,edi.file.process.job.user,model_edi_file_process_job,sales_team.group_sale_salesman,1,0,0,0
+access_edi_file_process_job_all,edi.file.process.job.manager,model_edi_file_process_job,sales_team.group_sale_manager,1,1,1,0
+access_edi_transaction_log_read,edi.transaction.log.user,model_edi_transaction_log,sales_team.group_sale_salesman,1,0,0,0
+access_edi_transaction_log_all,edi.transaction.log.manager,model_edi_transaction_log,sales_team.group_sale_manager,1,1,1,0
+access_partner_product_read,partner.product.ept.user,model_partner_product_ept,sales_team.group_sale_salesman,1,0,0,0
+access_partner_product_all,partner.product.ept.manager,model_partner_product_ept,sales_team.group_sale_manager,1,1,1,1
+access_map_product_wizard_read,map.product.wizard.user,model_map_product_wizard,sales_team.group_sale_salesman,1,0,0,0
+access_map_product_wizard_all,map.product.wizard.manager,model_map_product_wizard,sales_team.group_sale_manager,1,1,1,1
+access_edi_cron_group_read,edi.cron.group.ept.user,model_edi_cron_group_ept,sales_team.group_sale_salesman,1,0,0,0
+access_edi_cron_group_all,edi.cron.group.ept.manager,model_edi_cron_group_ept,sales_team.group_sale_manager,1,1,1,1

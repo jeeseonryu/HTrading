@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+		<record id="edi_operation_wizard_view_ept" model="ir.ui.view">
+			<field name="name">EDI Operation Wizard</field>
+			<field name="model">edi.operations.wizard</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="EDI Wizard">
+					<group>
+						<group>
+							<field name="partner_ids" domain="[('integrate_edi','=',True)]" widget="many2many_tags"/>
+						</group>
+					</group>
+					<group>
+					
+					<group name='export' string="Export Operations">
+       					<field name="export_products"/>	
+       					<field name="export_shipments"/>
+       					<field name="export_inventory"/>
+					</group>	
+					<group name='import' string="Import Operations">
+       					<field name="import_orders"/>
+					</group>	
+					</group>	
+						<footer>
+	                      	<button class="oe_highlight" string="Perform" name="perform_operations" type="object"/>		                      	
+	                      	<button  class="oe_highlight" special="cancel" string="Cancel"/>
+					</footer>
+				</form>
+			</field>
+		</record>
+		
+        <record id="action_edi_operations_wizard" model="ir.actions.act_window">
+            <field name="name">EDI Operations</field>
+            <field name="res_model">edi.operations.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="edi_operation_wizard_view_ept"/>
+            <field name="target">new</field>
+        </record>
+        
+      	<menuitem id="menu_edi_operation" name="EDI FTP Operations" 
+			parent="stock.menu_stock_root" />
+
+        <menuitem action="action_edi_operations_wizard"
+            id="menu_edi_ftp_wiz"
+            sequence="10"
+            parent="menu_edi_operation"/>
+            
+	</data>
+</odoo>		

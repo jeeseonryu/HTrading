@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+    
+    <record id="edi_configuration_tree_view_ept" model="ir.ui.view">
+	    <field name="name">EDI Configurations</field>
+	    <field name="model">edi.configuration.ept</field>
+		<field name="type">tree</field>
+		<field name="arch" type="xml">
+            <tree string="EDI Configurations" create="false" >
+            	<field name="order_warehouse_id"></field>
+            	<field name="stock_warehouse_ids"></field>
+            	<field name="order_number_from"></field>
+            	<field name="auto_workflow_id"></field>
+			</tree>
+		</field>
+	</record>
+	
+	<record id="edi_configuration_form_view_ept" model="ir.ui.view">
+	    <field name="name">EDI Configurations</field>
+	    <field name="model">edi.configuration.ept</field>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+            <form string="EDI Configurations" create="false" >
+            	<group>
+	            	<group>
+	            	<field name="order_warehouse_id"></field>
+	            	<field name="order_number_from"></field>
+	            	<field name="auto_workflow_id"></field>
+	            	</group>
+            	</group>
+            	<group string="Stock Warehouses">
+            		<field name="stock_warehouse_ids" nolabel="1" required="1"></field>
+            	</group>
+			</form>
+		</field>
+	</record>
+	
+	
+	  <record id="action_edi_configuration" model="ir.actions.act_window">
+            <field name="name">EDI Configurations</field>
+            <field name="res_model">edi.configuration.ept</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="edi_configuration_tree_view_ept"/>
+        </record>
+        
+      	<menuitem id="menu_edi_configurations" name="EDI Configuration" 
+			parent="menu_edi_operation" action="action_edi_configuration"/>
+            
+	</data>
+</odoo>		

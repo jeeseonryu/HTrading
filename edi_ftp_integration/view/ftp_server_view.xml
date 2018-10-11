@@ -1,0 +1,62 @@
+<?xml version="1.0" ?>
+<odoo>
+  <data>
+  
+	<record id="edi_ftp_server_ept" model="ir.ui.view">
+	    <field name="name">File Server</field>
+	    <field name="model">ftp.server.ept</field>
+		<field name="type">tree</field>
+		<field name="arch" type="xml">
+            <tree string="Ftp Server">
+            	<field name="name"/>
+				<field name="ftp_host"/>
+				<field name="is_passive_mode"/>
+			</tree>
+		</field>
+	</record>
+	
+	<record id="edi_ftp_server_form_view_ept" model="ir.ui.view">
+		<field name="name">File Server</field>
+		<field name="model">ftp.server.ept</field>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+			<form string="File Server">
+				<sheet>
+					<group string="Server Info">
+						<group>
+							<field name="name"/>
+							<field name="ftp_host"/>
+							<field name="ftp_username"/>
+							<field name="ftp_password" password="1"/>
+						</group>
+						<group>
+							<field name="ftp_port"/>
+							<field name="is_passive_mode"/>					
+						</group>
+					</group>
+					<group string="Directory List">
+						<field name="directory_ids" nolabel="1">
+							<tree editable="top">
+								<field name="partner_id"/>
+								<field name="name"/>
+								<field name="path"/>
+							</tree>
+						</field>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="action_edi_ftp_details_ept" model="ir.actions.act_window">
+		<field name="name">EDI FTP Details</field>
+		<field name="res_model">ftp.server.ept</field>
+		<field name="view_type">form</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+	
+    <menuitem id="menu_edi_details" name="EDI Server Details" 
+		parent="menu_edi_operation" action="action_edi_ftp_details_ept" sequence="5"/>
+
+</data>
+</odoo>	

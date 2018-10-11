@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record id="wizard_product_creation_process_ept" model="ir.ui.view">
+			<field name="name">Product Creation Process</field>
+			<field name="model">product.creation.process.ept</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<form string="Product Creation Process">
+                   
+                    <field name="dropship_product_ids">
+                        <tree string="Products" editable="bottom" create="false" delete="false">
+                            <field name="partner_id"/>
+                        </tree>
+                    </field>
+                    <field name="welcome_message"
+                        placeholder="This text is included in the email sent to new portal users."/>
+                    <footer>
+                        <button string="Apply" name="action_apply" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-default" special="cancel" />
+                    </footer>
+                </form>
+			</field>
+		</record>
+
+	</data>
+</odoo>

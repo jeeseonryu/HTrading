@@ -1,0 +1,13 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_dropship_server__ept_read,drop.ship.server.ept.user,model_drop_ship_server_ept,sales_team.group_sale_salesman,1,0,0,0
+access_dropship_server__ept_read_all,drop.ship.server.ept.manager,model_drop_ship_server_ept,sales_team.group_sale_manager,1,1,1,1
+access_dropship_ftp_server_dirctory_read,directory.ept.user,model_directory_ept,sales_team.group_sale_salesman,1,0,0,0
+access_dropship_ftp_server_dirctory_all,directory.ept.manager,model_directory_ept,sales_team.group_sale_manager,1,1,1,1
+access_dropship_file_process_job_ept_read,dropship.file.process.job.ept.user,model_dropship_file_process_job_ept,sales_team.group_sale_salesman,1,0,0,0
+access_dropship_file_process_job_ept_all,dropship.file.process.job.ept.manager,model_dropship_file_process_job_ept,sales_team.group_sale_manager,1,1,1,1
+access_dropship_transaction_log_ept_read,dropship.transaction.log.ept.user,model_dropship_transaction_log_ept,sales_team.group_sale_salesman,1,0,0,0
+access_dropship_transaction_log_ept_all,dropship.transaction.log.ept.manager,model_dropship_transaction_log_ept,sales_team.group_sale_manager,1,1,1,1
+access_dropship_product_ept_read,dropship.product.ept.user,model_dropship_product_ept,sales_team.group_sale_salesman,1,0,0,0
+access_dropship_product_ept_all,dropship.product.ept.manager,model_dropship_product_ept,sales_team.group_sale_manager,1,1,1,1
+access_dropship_product_line_ept_read,dropship.product.line.ept.user,model_dropship_product_line_ept,sales_team.group_sale_salesman,1,0,0,0
+access_dropship_product_line_ept_all,dropship.product.line.ept.manager,model_dropship_product_line_ept,sales_team.group_sale_manager,1,1,1,1

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record id="view_process_map_product_ept" model="ir.ui.view">
+			<field name="name">Import Partner Products</field>
+			<field name="model">map.product.wizard</field>
+			<field name="arch" type="xml">
+				<form string="Map Product">
+				<sheet>
+	                <pre>
+	                	<b>Required File Formate:-</b>
+	                	<p>
+		                	<b>Import Partner Products:</b>  [Odoo SKU,Partner Product SKU]
+	                	</p>
+	                </pre>
+	                <group>
+	                	<field name="partner_id" required="1"/>
+	                	<field name="file" required="1"/>
+	                	<field name="file_delimiter" required="1"/>
+	                </group>
+	              </sheet>
+                        <footer>
+                        <button name="map_product_file_process" string="Import Products" type="object" class="oe_highlight"/>					
+                        or
+                        <button string="_Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+			</field>
+		</record>
+		
+		<record id="action_map_product_wizard_ept" model="ir.actions.act_window">
+			<field name="name">Import Partner Products</field>
+			<field name="res_model">map.product.wizard</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+		</record>
+
+		<menuitem id="menu_map_product_csv_ept" name="Import Partner Products"
+			parent="stock.menu_stock_inventory_control" sequence="10"
+			action="action_map_product_wizard_ept" />
+	</data>
+</odoo>

@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="dropship_res_partner_extension" model="ir.ui.view">
+		<field name="name">dropship.res.partner</field>
+		<field name="model">res.partner</field>
+		<field name="type">form</field>
+		<field name="inherit_id" ref="base.view_partner_form"></field>
+		<field name="arch" type="xml">
+			<field name="category_id" position="after">
+				<field name="is_integrate_edi" invisible="1" />
+			</field>
+			<xpath
+				expr="//notebook/page[@name='sales_purchases']/group[@name='container_row_2']/group[2]"
+				position="inside">
+				<field name="is_integrate_edi" attrs="{'invisible':[('supplier','=',False)]}" />
+			</xpath>
+			<xpath expr="//notebook/page[@name='sales_purchases']"
+				position="after">
+				<page string="Dropship FTP Configuration" name='dropship_ftp_config'
+					attrs="{'invisible':[('is_integrate_edi','=',False)]}">
+					<group>
+						<group>
+							<field name="dropship_server_id" attrs="{'required':[('is_integrate_edi','=',True)]}"></field>
+						</group>
+						<group>
+							<field name="csv_delimiter" attrs="{'required':[('is_integrate_edi','=',True)]}"></field>
+						</group>
+					</group>
+					<notebook>
+						<page string="Product" name='ftp_product'>
+							<group>
+								<group string="Product Import">
+									<field name="prefix_allow_import_product"></field>
+									<field name="product_import_directory_id"></field>
+									<field name="product_archive_directory_id"></field>
+								</group>
+								<group string="Search By">
+									<field name="search_by_vendor_code"></field>
+								</group>
+							</group>
+							<group string="Schedular Action Configuration">
+								<div>
+									<div>
+										<label for="auto_import_product" />
+										<field name="auto_import_product" class="oe_inline" />
+									</div>
+									<div attrs="{'invisible': [('auto_import_product', '=', False)]}">
+										<label for="id" string="I want to import product at every " />
+										<field name="product_import_interval_number"
+											attrs="{'required': [('auto_import_product', '=', True)]}"
+											class="oe_inline" />
+										<field name="product_import_interval_type"
+											attrs="{'required': [('auto_import_product', '=', True)]}"
+											class="oe_inline" />
+										<field name="product_import_next_execution"
+											attrs="{'required': [('auto_import_product', '=', True)]}"
+											class="oe_inline" />
+
+										<field name="product_import_user_id"
+											attrs="{'required': [('auto_import_product', '=', True)]}"
+											class="oe_inline" />
+									</div>
+									<div>
+										<label for="auto_create_product" />
+										<field name="auto_create_product" class="oe_inline" />
+									</div>
+									<div>
+										<label for="auto_create_category"
+											attrs="{'invisible':[('auto_create_product','=',False)]}" />
+										<field name="auto_create_category"
+											attrs="{'invisible':[('auto_create_product','=',False)]}"
+											class="oe_inline" />
+									</div>
+									<div attrs="{'invisible': [('auto_create_product', '=', False)]}">
+										<label for="id" string="I want to Create/Update product at every " />
+										<field name="product_creation_interval_number"
+											attrs="{'required': [('auto_create_product', '=', True)]}"
+											class="oe_inline" />
+										<field name="product_creation_interval_type"
+											attrs="{'required': [('auto_create_product', '=', True)]}"
+											class="oe_inline" />
+										<field name="product_creation_next_execution"
+											attrs="{'required': [('auto_create_product', '=', True)]}"
+											class="oe_inline" />
+										<field name="product_creation_user_id"
+											attrs="{'required': [('auto_create_product', '=', True)]}"
+											class="oe_inline" />
+									</div>
+								</div>
+							</group>
+						</page>
+						<page string="Stock" name='ftp_inventory'>
+							<group string="Import Stock">
+								<group>
+									<field name="prefix_import_stock"></field>
+									<field name="stock_import_directory_id"></field>
+									<field name="stock_archive_directory_id"></field>
+								</group>
+							</group>
+							<div>
+								<label for="auto_validate_inventory" />
+								<field name="auto_validate_inventory" class="oe_inline"></field>
+							</div>
+							<div attrs="{'invisible': [('auto_validate_inventory', '=', False)]}">
+								<label for="id" string="Import Inventory stock at every " />
+								<field name="stock_import_interval_number"
+									attrs="{'required': [('auto_validate_inventory', '=', True)]}"
+									class="oe_inline" />
+								<field name="stock_import_interval_type"
+									attrs="{'required': [('auto_validate_inventory', '=', True)]}"
+									class="oe_inline" />
+								<field name="stock_import_next_execution"
+									attrs="{'required': [('auto_validate_inventory', '=', True)]}"
+									class="oe_inline" />
+								<field name="stock_import_user_id"
+									attrs="{'required': [('auto_validate_inventory', '=', True)]}"
+									class="oe_inline" />
+							</div>
+						</page>
+						<page string="Shipment information" name='ftp_shipment'>
+							<group string="Export Shipment">
+								<group>
+									<field name="prefix_allow_shipment_export"></field>
+									<field name="drophip_shipment_export_directory_id"></field>
+								</group>
+							</group>
+							<div>
+								<label for="is_auto_export_orders" />
+								<field name="is_auto_export_orders" class="oe_inline"></field>
+							</div>
+							<div attrs="{'invisible': [('is_auto_export_orders', '=', False)]}">
+								<label for="id" string="Export Orders at every " />
+								<field name="order_export_interval_number"
+									attrs="{'required': [('is_auto_export_orders', '=', True)]}"
+									class="oe_inline" />
+								<field name="order_export_interval_type"
+									attrs="{'required': [('is_auto_export_orders', '=', True)]}"
+									class="oe_inline" />
+								<field name="order_export_next_execution"
+									attrs="{'required': [('is_auto_export_orders', '=', True)]}"
+									class="oe_inline" />
+								<field name="order_export_user_id"
+									attrs="{'required': [('is_auto_export_orders', '=', True)]}"
+									class="oe_inline" />
+							</div>
+							<group string="Import Shipment Confirmation">
+								<group>
+									<field name="prefix_shipment_tracking"></field>
+									<field name="shipment_import_directory_id"></field>
+									<field name="shipment_archive_directory_id"></field>
+								</group>
+							</group>
+							<div>
+								<label for="is_auto_import_shipments" />
+								<field name="is_auto_import_shipments" class="oe_inline"></field>
+							</div>
+							<div attrs="{'invisible': [('is_auto_import_shipments', '=', False)]}">
+								<label for="id" string="Import Orders at every " />
+								<field name="order_import_interval_number"
+									attrs="{'required': [('is_auto_import_shipments', '=', True)]}"
+									class="oe_inline" />
+								<field name="order_import_interval_type"
+									attrs="{'required': [('is_auto_import_shipments', '=', True)]}"
+									class="oe_inline" />
+								<field name="order_import_next_execution"
+									attrs="{'required': [('is_auto_import_shipments', '=', True)]}"
+									class="oe_inline" />
+								<field name="order_import_user_id"
+									attrs="{'required': [('is_auto_import_shipments', '=', True)]}"
+									class="oe_inline" />
+							</div>
+						</page>
+					</notebook>
+				</page>
+			</xpath>
+		</field>
+	</record>
+</odoo>
