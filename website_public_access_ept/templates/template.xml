@@ -1,21 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-	<template id="frontend_layout" inherit_id="portal.frontend_layout"  name="Public Use Constrain">
-	<xpath expr="//main" position="replace">
-		<main>
-           <t t-if="request.website.is_public_user() and not request.httprequest.path in ['/web/login','/web/signup','/web/reset_password']">
-			<script>
-	  		$(document).ready(function(){
-	    	window.location.href = window.location.origin+'/web/login'
-	  		})
-			</script>
-		  </t>
-		  <t t-else=''>
-			<t t-raw="0" />
-		  </t>       
-        </main>
-	</xpath>
-	</template>
 	<template id="clarico_signin_c_signin_ept" inherit_id="clarico_signin.clarico_signin_c_signin">
 		<xpath expr="//div[hasclass('signin_main_div')]" position="attributes">
 			<attribute name="class">signin_main_div login_page_ugg</attribute>
