@@ -16,7 +16,8 @@ class IrHttp(models.AbstractModel):
     def _dispatch(cls):   
         url=request.httprequest.path
         
-        if not request.session['login'] and (url.find('/web/login')==-1 or url.find('_odoo/paas') ==-1):
+        #if not request.session['login'] and (url.find('/web/login')==-1 or url.find('_odoo/paas') ==-1):
+        if not request.session['login'] and url.find('/_odoo/paas')==-1:
             if url.find('/web/')==-1 and url.find('/website/lang/')==-1  and url.find('/website/translations')==-1:
                 _logger.info("\n****** website public access url:_displtch method of ir.http for url %s"%url)
                 redirect = '/web/login'
