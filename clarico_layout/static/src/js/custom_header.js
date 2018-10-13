@@ -234,6 +234,12 @@ $(document).keyup(function(e) {
 	}
 });
 
+$(document).ready(function(){
+	
+	$(".company_logo").removeAttr("href");
+	$(".navbar-header a.logo").removeAttr("href");
+})
+
 
 
 

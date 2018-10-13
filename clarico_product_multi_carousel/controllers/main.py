@@ -30,7 +30,7 @@ class ClaricoStaticCarousel(http.Controller):
             localdict = {'uid':uid}
             data['domain'] = safe_eval(filter_data.filter_id.domain,localdict)
             
-            data_pro = request.env['product.template'].search(data['domain'],limit=4) 
+            data_pro = request.env['product.template'].search(data['domain'],limit=5) 
             values = {}
             
             
