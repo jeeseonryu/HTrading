@@ -6,6 +6,7 @@ $(document).ready(function(){
 			$("div").find("#products_grid").addClass("main_left_grid");
 			$("div").find(".right-cnt-maxW").addClass("right-cnt-maxW_left");
 			//$("div").find(".products-grid-main").removeClass("main_left_grid");
+			$(".shop-page-breadcrumb .sub_breadcrumb").addClass("leftbar_breadcrumb_width");
 			$(".menu-filter").unbind("click"); 
 			$('.menu-filter').css("display","none");
 			$("div").find(".right-cnt-maxW").removeClass("right-cnt-maxW");

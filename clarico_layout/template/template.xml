@@ -144,8 +144,10 @@
 			<div class="custom-menu-inside-maxW">
 				<div class="fisrt_li">
 					<t t-set="category_fetch" t-value="website.category_check()"></t>
+					<div class="main_ctg_list">
 					<t t-foreach="category_fetch" t-as="category_individual">
 						<t t-if="not category_individual.parent_id">
+							
 							<li class="first-level-category-li dropdown-submenu" t-att-id="'genrate_categ_id-%s' % category_individual.id">
 								<div class="first-level-left-div">
 									<div class="first-level-category-image" itemprop="image"
@@ -155,7 +157,14 @@
 								</div>
 								<span tabindex="-1"
 									class="submenu-a first-level-category-caret fa fa-chevron-right" t-if="category_individual.child_id"/>
-								<div class="toggel_div toggel-div-effect" t-att-id="category_individual.id">
+								
+							</li>
+							</t>
+							</t>
+						</div>
+						<div class="sub_ctg_list_main">
+									<t t-foreach="category_fetch" t-as="category_individual">
+							<div class="toggel_div toggel-div-effect" t-att-id="category_individual.id">
 									<div class="toggel-inside-div">
 										<div class="menu_expand menu_1_div">
 											<div class="menu_expand_overflow menu_1_column_div">
@@ -166,7 +175,7 @@
 																<a class="second-level-a menu_heading " t-att-href="'/shop/category/%s' %slug(c)"
 																	t-field="c.name"></a>
 																<span tabindex="-1"
-																	class="submenu-a second-level-category-caret fa fa-chevron-right"  t-if="c.child_id"/>
+																	class="submenu-a second-level-category-caret fa fa-chevron-right"  t-if="c.child_id" />
 																<ul class="third-level-ul dropdown-menu">
 																	<t t-foreach="c.child_id" t-as="child">
 																		<li class="third-level-li">
@@ -183,9 +192,8 @@
 										</div>
 									</div>
 								</div>
-							</li>
 						</t>
-					</t>
+				</div>
 				</div>
 			</div>
 		</ul>

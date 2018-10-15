@@ -22,6 +22,9 @@ function create_slider(slider_slide,loop){
 			            items:3
 			        },
 			        1000:{
+			            items:4
+			        },
+			        1200:{
 			            items:slide_int_val
 			        }
 			    }

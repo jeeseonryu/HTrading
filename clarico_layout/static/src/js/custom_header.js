@@ -43,12 +43,25 @@ $(document).ready(function(){
 		});
 		
 		// Dynamic category hover
-		$('.first-level-category-li').mouseenter(function(){
-			var self =$(this) 
-			var first_div = $(self).find('.first-level-left-div');
-			first_div.addClass("active-li");
-			self.find('.toggel_div').css("display","block");
-			self.find('.toggel_div').find('.menu_1_div').css("display","block");
+		$('.first-level-category-li').each(function(){
+			var self =$(this);
+			var str =self.attr('id');
+			var suffix = str.match(/\d+/).toString();
+
+			$(self).mouseenter(function(){
+				var first_div = $(self).find('.first-level-left-div');
+				first_div.addClass("active-li");
+				self.find('.toggel_div').css("display","block");
+				
+				$('.toggel_div').each(function(){
+					var append_div = $(this).attr('id').match(/\d+/).toString();;
+					if(suffix == append_div)
+						{
+							$('.toggel_div').css("display","none");
+							$(this).css("display","block").find(".menu_1_div").css("display","block");
+						}
+				})
+			})
 		});
 		$('.first-level-category-li').mouseleave(function(){
 			var self =$(this)
@@ -171,7 +184,38 @@ $(document).ready(function(){
 	});
 	
 	// Dropdown manu
-	$('.dropdown-submenu span.submenu-a').on("click", function(e){
+		if ($(window).width() < 1200) {
+		
+	$('.first-level-category-li.dropdown-submenu').each(function(){
+		var self =$(this);
+		var str =self.attr('id');
+		var suffix = str.match(/\d+/).toString();
+
+		$('div.toggel-div-effect').each(function(){
+			var append_div = $(this).attr('id').match(/\d+/).toString();;
+			if(suffix == append_div)
+				{
+					$(this).appendTo(self);
+					
+				}
+		})
+		$(self).find('span.submenu-a').click(function(e){
+			$(this).next('ul').toggle();
+			$(this).next('div.toggel-div-effect').toggle();
+			e.stopPropagation();
+			e.preventDefault();
+			
+			var clicks = $(this).data('clicks');
+			if (clicks) {
+				$(this).removeClass("fa-chevron-down").addClass("fa-chevron-right");
+			} else {
+				$(this).removeClass("fa-chevron-right").addClass("fa-chevron-down");
+			}
+			$(this).data("clicks", !clicks);
+		})
+	});
+	}
+	$('.category-heading-div.dropdown-submenu span.submenu-a').on("click", function(e){
 		$(this).next('ul').toggle();
 		$(this).next('div.toggel-div-effect').toggle();
 		e.stopPropagation();
