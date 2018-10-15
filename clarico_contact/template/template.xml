@@ -117,4 +117,25 @@
 			<attribute name="class">clarico_margin</attribute>
 		</xpath>
 	</template>
+	<template id="clarico_company_description" inherit_id="website.company_description">
+		<xpath expr="//address" position="replace">
+			<address itemscope="itemscope" itemtype="http://schema.org/Organization">
+				<!-- TODO widget contact must add itemprop attributes -->
+				<div t-field="res_company.partner_id"
+					t-options='{
+		                "widget": "contact",
+		                "fields": ["name", "address", "phone", "mobile"]}' />
+				<div>
+					<a t-attf-href="mailto:{{ res_company.email }}">
+						<i class="fa fa-envelope mr8"></i><span t-field="res_company.email"></span>
+					</a>
+				</div>
+				<t t-if="not res_company.google_map_img()">
+					<span class="fa fa-map-marker fa-fw mt16" />
+					<a t-att-href="res_company.google_map_link()" target="_BLANK"> Google Maps
+					</a>
+				</t>
+			</address>
+		</xpath>
+	</template>
 </odoo>

@@ -964,7 +964,7 @@
 						</form>
 					</div>
 					<div class="company_logo_main">
-						<p>
+						<p class="company_logo">
 							<span t-field="res_company.logo" t-options="{'widget': 'image'}"
 								t-att-alt="'Logo of %s' % res_company.name" t-att-title="res_company.name" />
 						</p>
@@ -2006,7 +2006,9 @@
 										<span>
 											<i class="fa fa-envelope"></i>
 										</span>
-										<p class="field_padding" t-field="res_company.email" />
+										 <a t-attf-href="mailto:{{ res_company.email }}" class="field_padding" >
+											<p t-field="res_company.email"></p>
+										</a>
 									</div>
 								</li>
 							</ul>
